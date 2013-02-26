@@ -1,0 +1,95 @@
+body {
+    font-size: 16px/1.4;
+}
+
+@media screen and (max-width: 500px){
+    body{
+       font-size: 12px;
+    }
+}
+
+#timer, #activities {
+    text-align: center;
+}
+
+#timer {
+    background-color: #d14836;
+    margin-bottom: 3%;
+}
+
+#timer div {
+    font-size: 3.25em;
+}
+
+#timer input[value="Start"] {
+    background-color: black;
+    border: none;
+    color: white;
+    font-size: 1.15em;
+    margin: 0;
+    padding: 1%;
+    width: 100%;
+}
+
+#activities {
+    margin: auto;
+    text-align: center;
+    width: 90%;
+}
+
+#activities input {
+    font-size: 1.5em;
+    height: 30px;
+    margin-bottom: 2%;
+    padding: 1% 4%;
+    width: 90%;
+}
+
+#activities ul {
+    list-style-type: none;
+    margin: auto;
+    width: 98%;
+}
+
+#activities ul li {
+    border-top: 1px dotted #ccc;
+    font-size: 1.5em;
+    padding: 2% 4%;
+    text-align: left;
+    display: block;
+}
+
+#activities ul li:last-child {
+    border-bottom: 1px dotted #ccc;
+}
+
+#activities ul li a{
+    float: right;
+    cursor: pointer;
+}
+
+#activities ul li p{
+    width: 80%;
+    display: block;
+    float: left;
+}
+
+/* Clearfix */
+
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.cf {
+    *zoom: 1;
+}
