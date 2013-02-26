@@ -1,26 +1,32 @@
-var PomodoroTimer = {
-    endTime: 0,
-    timerId: 0,
+function PomodoroTimer() {
+  this.endTime = 0;
+  var timerId = 0;
 
-    start: function() {
-        date = new Date();
-        endTime = date.getTime() + (25 * 60 * 1000); // Current Time + 25 minutes (Pomodoro time)
+  this.remainingTime = function(){
+    var date = new Date();
+    remainingTime = new Date(this.endTime - date.getTime());
 
-        timerId = setInterval(this.refreshTimer, 1000);
-    },
+    return remainingTime;
+  };
 
-    refreshTimer: function() {
-        date = new Date();
-        remainingTime = new Date(this.endTime - date.getTime());
+  var ticTac = function(timer) {
+    var remainingTime = timer.remainingTime();
 
-        if(remainingTime <= 0) {
-            clearInterval(this.timerId);
+    if(remainingTime <= 0) { clearInterval(timerId) }
 
-            return false;
-        }
-
-        changeHTMLTimer(remainingTime);
+    if (typeof timer.onTicTac == "function") {
+      timer.onTicTac(remainingTime);
     }
+  };
+
+  this.start = function() {
+    var date = new Date();
+    this.endTime = date.getTime() + (25 * 60 * 1000); // Current Time + 25 minutes (Pomodoro time)
+
+    var timer = this;
+
+    timerId = setInterval(function() { ticTac(timer) }, 1000);
+  };
 }
 
 // Refresh timer in view
@@ -51,9 +57,13 @@ var formatNumber = function(number){
 
 // Start timer when click in start button
 var button = document.getElementById('timer').getElementsByTagName("input")[0];
+var pomodoroTimer;
 
 button.onclick = function() {
-    PomodoroTimer.start();
+    pomodoroTimer = new PomodoroTimer();
+    pomodoroTimer.onTicTac = changeHTMLTimer;
+
+    pomodoroTimer.start();
 };
 
 // Activities
