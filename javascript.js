@@ -23,6 +23,7 @@ var PomodoroTimer = {
     }
 }
 
+// Refresh timer in view
 var htmlTimer = document.getElementById('timer').getElementsByTagName("div")[0];
 
 var changeHTMLTimer = function(remainingTime) {
@@ -35,6 +36,7 @@ var changeHTMLTimer = function(remainingTime) {
     htmlTimer.innerHTML = minutes + ":" + seconds;
 }
 
+// Hour number format. Ex.: 9 to 09; 0 to 00;
 var formatNumber = function(number){
     if(number < 10 && number > 0) {
         number = "0" + number;
@@ -47,18 +49,19 @@ var formatNumber = function(number){
     return number;
 }
 
-// Start button
+// Start timer when click in start button
 var button = document.getElementById('timer').getElementsByTagName("input")[0];
 
 button.onclick = function() {
     PomodoroTimer.start();
 };
 
+// Activities
 var activityInput = document.getElementById('activities').getElementsByTagName("input")[0];
 var activityList = document.getElementById('activities').getElementsByTagName("ul")[0];
 
 activityInput.onkeypress = function(e) {
-    // Enter key
+    // Insert new activity when press Enter key and set event to delete when clicking in anchor with "x"
     if (e.keyCode == 13) {
         activityList.innerHTML = "<li class='cf'><p>" + activityInput.value + "</p><a>&#215;</a></li>" + activityList.innerHTML;
         activityInput.value = "";
