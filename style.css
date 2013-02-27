@@ -31,13 +31,13 @@ body {
     width: 100%;
 }
 
-#activities {
+#tasks {
     margin: auto;
     text-align: center;
     width: 90%;
 }
 
-#activities input {
+#tasks input {
     font-size: 1.5em;
     height: 30px;
     margin-bottom: 2%;
@@ -45,13 +45,13 @@ body {
     width: 90%;
 }
 
-#activities ul {
+#tasks ul {
     list-style-type: none;
     margin: auto;
     width: 98%;
 }
 
-#activities ul li {
+#tasks ul li {
     border-top: 1px dotted #ccc;
     font-size: 1.5em;
     padding: 2% 4%;
@@ -59,16 +59,16 @@ body {
     display: block;
 }
 
-#activities ul li:last-child {
+#tasks ul li:last-child {
     border-bottom: 1px dotted #ccc;
 }
 
-#activities ul li a{
+#tasks ul li a{
     float: right;
     cursor: pointer;
 }
 
-#activities ul li p{
+#tasks ul li p{
     width: 80%;
     display: block;
     float: left;

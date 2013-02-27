@@ -36,19 +36,19 @@ button.onclick = function() {
 };
 
 // Activities
-var activityInput = document.getElementById('activities').getElementsByTagName("input")[0];
-var activityList = document.getElementById('activities').getElementsByTagName("ul")[0];
+var taskInput = document.getElementById('tasks').getElementsByTagName("input")[0];
+var taskList = document.getElementById('tasks').getElementsByTagName("ul")[0];
 
-activityInput.onkeypress = function(e) {
-    // Insert new activity when press Enter key and set event to delete when clicking in anchor with "x"
+taskInput.onkeypress = function(e) {
+    // Insert new task when press Enter key and set event to delete when clicking in anchor with "x"
     if (e.keyCode == 13) {
-        activityList.innerHTML = "<li class='cf'><p>" + activityInput.value + "</p><a>&#215;</a></li>" + activityList.innerHTML;
-        activityInput.value = "";
+        taskList.innerHTML = "<li class='cf'><p>" + taskInput.value + "</p><a>&#215;</a></li>" + taskList.innerHTML;
+        taskInput.value = "";
 
-        deleteLinks = activityList.getElementsByTagName("a");
+        deleteTaskLinks = taskList.getElementsByTagName("a");
 
-        for (var i in deleteLinks){
-            deleteLinks[i].onclick = function() {
+        for (var i in deleteTaskLinks){
+            deleteTaskLinks[i].onclick = function() {
                 this.parentNode.parentNode.removeChild(this.parentNode);
             };
         }
