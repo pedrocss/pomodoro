@@ -18,3 +18,8 @@
       pomodoroTimer.start();
     </script>
 
+## Testing
+
+Open files in browser:
+
+* `test/pomodoro_timer.test.js`
