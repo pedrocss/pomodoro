@@ -47,8 +47,10 @@ activityInput.onkeypress = function(e) {
 
         deleteLinks = activityList.getElementsByTagName("a");
 
-        deleteLinks[0].onclick = function() {
-            this.parentNode.parentNode.removeChild(this.parentNode);
-        };
+        for (var i in deleteLinks){
+            deleteLinks[i].onclick = function() {
+                this.parentNode.parentNode.removeChild(this.parentNode);
+            };
+        }
     }
 }
