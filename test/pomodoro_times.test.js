@@ -26,7 +26,7 @@ describe("PomodoroTimer", function(){
   });
 
   describe("#onTicTac", function(){
-    it("is called when timer is running", function(done){
+    it("called when timer is running", function(done){
       var pomodoroTimer = new PomodoroTimer();
 
       pomodoroTimer.onTicTac = function(remainingTime){
