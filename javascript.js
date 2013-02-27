@@ -26,12 +26,10 @@ var formatNumber = function(number){
 
 // Start timer when click in start button
 var button = document.getElementById('timer').getElementsByTagName("input")[0];
-var pomodoroTimer;
+var pomodoroTimer = new PomodoroTimer();
 
 button.onclick = function() {
-    pomodoroTimer = new PomodoroTimer();
     pomodoroTimer.onTicTac = changeHTMLTimer;
-
     pomodoroTimer.start();
 };
 

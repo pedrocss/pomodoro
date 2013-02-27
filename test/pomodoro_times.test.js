@@ -14,6 +14,15 @@ describe("PomodoroTimer", function(){
       pomodoroTimer.start();
       expect(pomodoroTimer.endTime).to.be.equal(date.getTime() + (25 * 60 * 1000));
     });
+
+    it("reset end time when start two times", function(){
+      var pomodoroTimer = new PomodoroTimer();
+      var date = new Date();
+
+      pomodoroTimer.start();
+      pomodoroTimer.start();
+      expect(pomodoroTimer.endTime).to.be.equal(date.getTime() + (25 * 60 * 1000));
+    });
   });
 
   describe("#onTicTac", function(){

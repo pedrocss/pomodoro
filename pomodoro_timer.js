@@ -46,6 +46,8 @@ function PomodoroTimer() {
     this.endTime = date.getTime() + (25 * 60 * 1000); // Current Time + 25 minutes (Pomodoro time)
     var timer = this;
 
-    timerId = setInterval(function() { ticTac(timer) }, 1000);
+    if(timerId == 0) {
+        timerId = setInterval(function() { ticTac(timer) }, 1000);
+    }
   };
 }
