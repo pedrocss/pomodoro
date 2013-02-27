@@ -4,7 +4,7 @@ describe("PomodoroTimer", function(){
       var pomodoroTimer = new PomodoroTimer();
       expect(pomodoroTimer).to.be.a(PomodoroTimer);
     });
-  })
+  });
 
   describe("#start", function(){
     it("set end time to 25 minutes from now", function(){
@@ -14,5 +14,17 @@ describe("PomodoroTimer", function(){
       pomodoroTimer.start();
       expect(pomodoroTimer.endTime).to.be.equal(date.getTime() + (25 * 60 * 1000));
     });
-  })
-})
+  });
+
+  describe("#onTicTac", function(){
+    it("is called when timer is running", function(done){
+      var pomodoroTimer = new PomodoroTimer();
+
+      pomodoroTimer.onTicTac = function(remainingTime){
+        done();
+      };
+
+      pomodoroTimer.start();
+    });
+  });
+});

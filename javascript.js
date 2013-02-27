@@ -1,34 +1,3 @@
-function PomodoroTimer() {
-  this.endTime = 0;
-  var timerId = 0;
-
-  this.remainingTime = function(){
-    var date = new Date();
-    remainingTime = new Date(this.endTime - date.getTime());
-
-    return remainingTime;
-  };
-
-  var ticTac = function(timer) {
-    var remainingTime = timer.remainingTime();
-
-    if(remainingTime <= 0) { clearInterval(timerId) }
-
-    if (typeof timer.onTicTac == "function") {
-      timer.onTicTac(remainingTime);
-    }
-  };
-
-  this.start = function() {
-    var date = new Date();
-    this.endTime = date.getTime() + (25 * 60 * 1000); // Current Time + 25 minutes (Pomodoro time)
-
-    var timer = this;
-
-    timerId = setInterval(function() { ticTac(timer) }, 1000);
-  };
-}
-
 // Refresh timer in view
 var htmlTimer = document.getElementById('timer').getElementsByTagName("div")[0];
 
