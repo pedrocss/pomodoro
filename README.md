@@ -20,6 +20,4 @@
 
 ## Testing
 
-Open files in browser:
-
-* `test/pomodoro_timer.test.js`
+Open file`test/index.html` in browser.
