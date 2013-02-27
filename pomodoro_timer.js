@@ -33,7 +33,10 @@ function PomodoroTimer() {
   var ticTac = function(timer) {
     var remainingTime = timer.remainingTime();
 
-    if(remainingTime.valueOf() == 0) { clearInterval(timerId) }
+    if(remainingTime.valueOf() == 0) {
+        clearInterval(timerId);
+        timerId = 0;
+    }
 
     // call event onTitTac if defined
     if (typeof timer.onTicTac == "function") {
