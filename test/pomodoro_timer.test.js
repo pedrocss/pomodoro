@@ -1,14 +1,18 @@
 describe("PomodoroTimer", function(){
+  var pomodoroTimer = null;
+
+  beforeEach(function(){
+    pomodoroTimer = new PomodoroTimer();
+  })
+
   describe("new", function(){
     it("returns a PomodoroTimer instance", function(){
-      var pomodoroTimer = new PomodoroTimer();
       expect(pomodoroTimer).to.be.a(PomodoroTimer);
     });
   });
 
   describe("#start", function(){
     it("set end time to 25 minutes from now", function(){
-      var pomodoroTimer = new PomodoroTimer();
       var date = new Date();
 
       pomodoroTimer.start();
@@ -16,7 +20,6 @@ describe("PomodoroTimer", function(){
     });
 
     it("reset end time when start two times", function(){
-      var pomodoroTimer = new PomodoroTimer();
       var date = new Date();
 
       pomodoroTimer.start();
@@ -27,8 +30,6 @@ describe("PomodoroTimer", function(){
 
   describe("#onTicTac", function(){
     it("called when timer is running", function(done){
-      var pomodoroTimer = new PomodoroTimer();
-
       pomodoroTimer.onTicTac = function(remainingTime){
         done();
       };
