@@ -39,7 +39,7 @@ describe("PomodoroTimer", function(){
   });
 
   describe("#createTask", function(){
-    it("return PomodoroTask instance", function(){
+    it("return created task", function(){
       var task = pomodoroTimer.createTask("Study")
       expect(task).to.be.a(PomodoroTask)
     });
