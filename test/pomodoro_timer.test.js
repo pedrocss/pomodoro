@@ -51,7 +51,41 @@ describe("PomodoroTimer", function(){
   });
 
   describe("#removeTask", function(){
+    context("when the informed task is in the list", function(){
+      it("return removed task", function(){
+        var task = pomodoroTimer.createTask("Study");
+        var removedTask = pomodoroTimer.removeTask(task);
+        expect(task).to.be(removedTask);
+      });
 
+      it("should remove from Pomodoro Timer task list", function(){
+        var task = pomodoroTimer.createTask("Study");
+        pomodoroTimer.removeTask(task);
+        expect(pomodoroTimer.tasks).to.not.contain(task);
+      });
+    })
+
+    context("when the informed task is not in the list", function(){
+      it("return removed task", function(){
+        var task1 = pomodoroTimer.createTask("Study");
+        var task2 = pomodoroTimer.createTask("Run");
+
+        pomodoroTimer.removeTask(task1);
+        pomodoroTimer.removeTask(task1);
+
+        expect(pomodoroTimer.tasks).to.not.contain(task1);
+        expect(pomodoroTimer.tasks).to.contain(task2);
+      });
+
+      it("return null", function(){
+        var task = pomodoroTimer.createTask("Study");
+
+        pomodoroTimer.removeTask(task);
+        var removedTask = pomodoroTimer.removeTask(task);
+
+        expect(removedTask).to.be(null);
+      });
+    });
   });
 
   describe("#tasks", function(){

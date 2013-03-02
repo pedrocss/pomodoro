@@ -61,6 +61,20 @@ function PomodoroTimer() {
 
     return task;
   };
+
+  this.removeTask = function(task){
+    var NOT_FOUND = -1;
+
+    var index = this.tasks.indexOf(task);
+
+    if(index != NOT_FOUND){
+      this.tasks.splice(index, 1);
+
+      return task;
+    }
+
+    return null;
+  }
 }
 
 function PomodoroTask(description){
