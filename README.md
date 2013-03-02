@@ -1,11 +1,9 @@
 # Simple Pomodoro Timer.
 
 #### Problem with procrastination? Your problem were solved, or not.
-#### Project under construction. Contributions are welcome.
-
-## About
 
 [http://www.pomodorotechnique.com/](Pomodoro Technique Website)
+
 [http://en.wikipedia.org/wiki/Pomodoro_Technique](Pomodoro Technique on Wikipedia)
 
 ## Demo
@@ -15,3 +13,7 @@
 ## Testing
 
 Open file`test/tests.html` in browser.
+
+## Contribuiting
+
+Project under construction. Contributions are welcome.
