@@ -16,6 +16,7 @@
 function PomodoroTimer() {
   this.endTime = 0;
   var timerId = 0;
+  this.tasks = [];
 
   this.remainingTime = function(){
     var date = new Date();
@@ -53,4 +54,15 @@ function PomodoroTimer() {
         timerId = setInterval(function() { ticTac(timer) }, 1000);
     }
   };
+
+  this.createTask = function(description) {
+    var task = new PomodoroTask(description);
+    this.tasks.push(task);
+
+    return task;
+  };
+}
+
+function PomodoroTask(description){
+  this.description = description;
 }

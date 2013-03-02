@@ -37,4 +37,27 @@ describe("PomodoroTimer", function(){
       pomodoroTimer.start();
     });
   });
+
+  describe("#createTask", function(){
+    it("return PomodoroTask instance", function(){
+      var task = pomodoroTimer.createTask("Study")
+      expect(task).to.be.a(PomodoroTask)
+    });
+
+    it("set description in created task", function(){
+      var task = pomodoroTimer.createTask("Study")
+      expect(task.description).to.be("Study")
+    });
+  });
+
+  describe("#tasks", function(){
+    it("return PomodoroTask list", function(){
+      var task = pomodoroTimer.createTask("Study");
+      expect(pomodoroTimer.tasks).to.contain(task);
+    });
+
+    it("should be empty when no tasks", function(){
+      expect(pomodoroTimer.tasks).to.empty;
+    });
+  });
 });
