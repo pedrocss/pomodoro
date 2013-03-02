@@ -44,18 +44,17 @@ describe("PomodoroTimer", function(){
       expect(task).to.be.a(PomodoroTask)
     });
 
-    it("set description in created task", function(){
+    it("should add task to Pomodoro Timer task list", function(){
       var task = pomodoroTimer.createTask("Study")
-      expect(task.description).to.be("Study")
+      expect(pomodoroTimer.tasks).to.contain(task)
     });
   });
 
-  describe("#tasks", function(){
-    it("return PomodoroTask list", function(){
-      var task = pomodoroTimer.createTask("Study");
-      expect(pomodoroTimer.tasks).to.contain(task);
-    });
+  describe("#removeTask", function(){
 
+  });
+
+  describe("#tasks", function(){
     it("should be empty when no tasks", function(){
       expect(pomodoroTimer.tasks).to.empty;
     });
