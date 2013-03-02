@@ -59,6 +59,10 @@ function PomodoroTimer() {
     var task = new PomodoroTask(description);
     this.tasks.push(task);
 
+    if(typeof this.onCreateTask == "function"){
+      this.onCreateTask(task);
+    }
+
     return task;
   };
 
@@ -69,6 +73,10 @@ function PomodoroTimer() {
 
     if(index != NOT_FOUND){
       this.tasks.splice(index, 1);
+
+      if(typeof this.onRemoveTask == "function"){
+        this.onRemoveTask(task);
+      }
 
       return task;
     }

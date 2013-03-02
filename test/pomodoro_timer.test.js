@@ -88,6 +88,43 @@ describe("PomodoroTimer", function(){
     });
   });
 
+  describe("#onCreateTask", function(){
+    it("is called when a new task is created", function(done){
+      pomodoroTimer.onCreateTask = function(task){
+        expect(pomodoroTimer.tasks).to.contain(task);
+        done();
+      };
+
+      pomodoroTimer.createTask("Ah lelek lek lek lek lek");
+    });
+
+    it("do not throw exception when the onCreateTask is not a function", function(){
+      expect(function(){
+        pomodoroTimer.createTask("Task");
+      }).to.not.throwException();
+    });
+  });
+
+  describe("#onRemoveTask", function(){
+    it("is called when a task is removed", function(done){
+      pomodoroTimer.onRemoveTask = function(task){
+        expect(pomodoroTimer.tasks).to.not.contain(task);
+        done();
+      };
+
+      var task = pomodoroTimer.createTask("Ah lelek lek lek lek lek");
+      pomodoroTimer.removeTask(task);
+    });
+
+    it("do not throw exception when the onRemoveTask is not a function", function(){
+      var task = pomodoroTimer.createTask("Ah lelek lek lek lek lek");
+
+      expect(function(){
+        pomodoroTimer.removeTask(task);
+      }).to.not.throwException();
+    });
+  });
+
   describe("#tasks", function(){
     it("should be empty when no tasks", function(){
       expect(pomodoroTimer.tasks).to.empty;
