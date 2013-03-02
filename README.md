@@ -1,23 +1,17 @@
 # Simple Pomodoro Timer.
 
+#### Problem with procrastination? Your problem were solved, or not.
+#### Project under construction. Contributions are welcome.
+
+## About
+
+[http://www.pomodorotechnique.com/](Pomodoro Technique Website)
+[http://en.wikipedia.org/wiki/Pomodoro_Technique](Pomodoro Technique on Wikipedia)
+
 ## Demo
 
 [http://predoff.github.com/pomodoro](http://predoff.github.com/pomodoro)
 
-## Usage (pomodoro_timer.js)
-
-    <script type="text/javascript" src="pomodoro_timer.js"></script>
-
-    <script>
-      var pomodoroTimer = new PomodoroTimer();
-
-      pomodoroTimer.onTicTac = function(remainingTime){
-        alert(remainingTime.getSeconds());
-      };
-
-      pomodoroTimer.start();
-    </script>
-
 ## Testing
 
-Open file`test/index.html` in browser.
+Open file`test/tests.html` in browser.
