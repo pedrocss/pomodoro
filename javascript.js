@@ -1,10 +1,10 @@
 var pomodoroTimer = new PomodoroTimer();
 
 // Page Elements
-var htmlTimer = document.getElementById('timer').getElementsByTagName("div")[0];
-var startButton = document.getElementById('timer').getElementsByTagName("input")[0];
-var taskInput = document.getElementById('tasks').getElementsByTagName("input")[0];
-var taskList = document.getElementById('tasks').getElementsByTagName("ul")[0];
+var htmlTimer = document.getElementById('remaining_time');
+var startButton = document.getElementById('start_button');
+var taskInput = document.getElementById('task_description');
+var taskList = document.getElementById('task_list');
 
 // Refresh pomodoro timer in view
 var changeHTMLTimer = function(remainingTime) {
@@ -41,6 +41,8 @@ taskInput.onkeypress = function(e) {
     if (e.keyCode == 13) {
         pomodoroTimer.createTask(taskInput.value);
         taskInput.value = "";
+
+        e.preventDefault();
     }
 }
 

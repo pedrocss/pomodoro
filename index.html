@@ -7,15 +7,15 @@
     </head>
     <body>
         <section id="timer">
-            <div>25:00</div>
-            <input type="button" value="Start" />
+            <div id="remaining_time">25:00</div>
+            <input id="start_button" type="button" value="Start" />
         </section>
-        <section id="tasks">
-            <input type="text" placeholder="Study theory of relativity.."/>
-            <div>
-                <ul>
-                </ul>
-            </div>
+        <section class="tasks">
+            <form id="new_task">
+                <input id="task_description" type="text" placeholder="Study theory of relativity.."/>
+            </form>
+            <ul id="task_list">
+            </ul>
         </section>
         <script type="text/javascript" src="javascript.js"></script>
     </body>

@@ -8,7 +8,7 @@ body {
     }
 }
 
-#timer, #activities {
+section {
     text-align: center;
 }
 
@@ -17,11 +17,11 @@ body {
     margin-bottom: 3%;
 }
 
-#timer div {
+#remaining_time {
     font-size: 3.25em;
 }
 
-#timer input[value="Start"] {
+#start_button {
     background-color: black;
     border: none;
     color: white;
@@ -31,13 +31,15 @@ body {
     width: 100%;
 }
 
-#tasks {
+.tasks {
     margin: auto;
     text-align: center;
     width: 90%;
 }
 
-#tasks input {
+/* New Task Form */
+
+#new_task input {
     font-size: 1.5em;
     height: 30px;
     margin-bottom: 2%;
@@ -45,13 +47,17 @@ body {
     width: 90%;
 }
 
-#tasks ul {
+/* Task List */
+
+#task_list {
     list-style-type: none;
     margin: auto;
     width: 98%;
 }
 
-#tasks ul li {
+/* Task List Item */
+
+#task_list li {
     border-top: 1px dotted #ccc;
     font-size: 1.5em;
     padding: 2% 4%;
@@ -59,16 +65,16 @@ body {
     display: block;
 }
 
-#tasks ul li:last-child {
+#task_list li:last-child {
     border-bottom: 1px dotted #ccc;
 }
 
-#tasks ul li a{
+#task_list li a{
     float: right;
     cursor: pointer;
 }
 
-#tasks ul li p{
+#task_list li p{
     width: 80%;
     display: block;
     float: left;
