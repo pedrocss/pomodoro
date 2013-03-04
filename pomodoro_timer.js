@@ -87,4 +87,5 @@ function PomodoroTimer() {
 
 function PomodoroTask(description){
   this.description = description;
+  this.dom_element = null;
 }

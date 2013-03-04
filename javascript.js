@@ -1,6 +1,12 @@
-// Refresh timer in view
-var htmlTimer = document.getElementById('timer').getElementsByTagName("div")[0];
+var pomodoroTimer = new PomodoroTimer();
 
+// Page Elements
+var htmlTimer = document.getElementById('timer').getElementsByTagName("div")[0];
+var startButton = document.getElementById('timer').getElementsByTagName("input")[0];
+var taskInput = document.getElementById('tasks').getElementsByTagName("input")[0];
+var taskList = document.getElementById('tasks').getElementsByTagName("ul")[0];
+
+// Refresh pomodoro timer in view
 var changeHTMLTimer = function(remainingTime) {
     var minutes = remainingTime.getMinutes();
     var seconds = remainingTime.getSeconds();
@@ -24,31 +30,48 @@ var formatNumber = function(number){
     return number;
 }
 
-// Start timer when click in start button
-var button = document.getElementById('timer').getElementsByTagName("input")[0];
-var pomodoroTimer = new PomodoroTimer();
-
-button.onclick = function() {
+// Set function to refresh pomodoro timer and start timer
+startButton.onclick = function() {
     pomodoroTimer.onTicTac = changeHTMLTimer;
     pomodoroTimer.start();
 };
 
-// Activities
-var taskInput = document.getElementById('tasks').getElementsByTagName("input")[0];
-var taskList = document.getElementById('tasks').getElementsByTagName("ul")[0];
-
+// Creates new task with text input value and clears the input text, when pressing Enter
 taskInput.onkeypress = function(e) {
-    // Insert new task when press Enter key and set event to delete when clicking in anchor with "x"
     if (e.keyCode == 13) {
-        taskList.innerHTML = "<li class='cf'><p>" + taskInput.value + "</p><a>&#215;</a></li>" + taskList.innerHTML;
+        pomodoroTimer.createTask(taskInput.value);
         taskInput.value = "";
-
-        deleteTaskLinks = taskList.getElementsByTagName("a");
-
-        for (var i in deleteTaskLinks){
-            deleteTaskLinks[i].onclick = function() {
-                this.parentNode.parentNode.removeChild(this.parentNode);
-            };
-        }
     }
+}
+
+// Adds task item into task list.
+pomodoroTimer.onCreateTask = function(task){
+    task.dom_element = createTaskListItem(task);
+    taskList.insertBefore(task.dom_element, taskList.childNodes[0]);
+}
+
+// Removes task item from task list.
+pomodoroTimer.onRemoveTask = function(task){
+    task.dom_element.parentNode.removeChild(task.dom_element);
+}
+
+// Creates task item (DOM Element) and sets 'onclick' event in anchor to remove task.
+var createTaskListItem = function(task){
+    var new_task_li = document.createElement("li");
+    new_task_li.className = "cf";
+
+    var task_description_paragraph = document.createElement("p");
+    task_description_paragraph.innerHTML = task.description;
+
+    var delete_task_anchor = document.createElement("a");
+    delete_task_anchor.innerHTML = "&#215;";
+
+    new_task_li.appendChild(task_description_paragraph);
+    new_task_li.appendChild(delete_task_anchor);
+
+    delete_task_anchor.onclick = function() {
+        pomodoroTimer.removeTask(task);
+    }
+
+    return new_task_li;
 }
