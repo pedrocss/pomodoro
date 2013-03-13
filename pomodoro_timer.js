@@ -90,7 +90,7 @@ function PomodoroTimer() {
     var index = this.tasks.indexOf(task);
 
     if(index != NOT_FOUND){
-      task.finished = true;
+      task.finish();
 
       if(typeof this.onFinishTask == "function"){
         this.onFinishTask(task);
@@ -117,4 +117,8 @@ function PomodoroTask(description){
   this.description = description;
   this.dom_element = null;
   this.finished = false;
+
+  this.finish = function(){
+    this.finished = true;
+  }
 }
