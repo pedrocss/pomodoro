@@ -185,4 +185,22 @@ describe("PomodoroTimer", function(){
       expect(pomodoroTimer.tasks).to.empty;
     });
   });
+
+  describe("#finishedTasks", function(){
+    it("should return array with tasks where finished is true", function(){
+      var task1 = pomodoroTimer.createTask("Ah lelek lek lek lek lek");
+      var task2 = pomodoroTimer.createTask("Ai meus deus como é bom ser vida loka");
+
+      pomodoroTimer.finishTask(task1);
+
+      var finishedTasks = pomodoroTimer.finishedTasks();
+
+      expect(finishedTasks).to.contain(task1);
+      expect(finishedTasks).to.not.contain(task2);
+    });
+
+    it("should be empty when no tasks", function(){
+      expect(pomodoroTimer.finishedTasks).to.empty;
+    });
+  });
 });

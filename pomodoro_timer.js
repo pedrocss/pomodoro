@@ -101,6 +101,16 @@ function PomodoroTimer() {
 
     return null;
   }
+
+  this.finishedTasks = function(){
+    var finishedTasks = [];
+
+    this.tasks.forEach(function(t){
+      if(t.finished){ finishedTasks.push(t); }
+    });
+
+    return finishedTasks;
+  }
 }
 
 function PomodoroTask(description){
