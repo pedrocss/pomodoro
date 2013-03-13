@@ -4,9 +4,9 @@
 
 ## About
 
-[http://www.pomodorotechnique.com/](Pomodoro Technique Website)
+[Pomodoro Technique Website](http://www.pomodorotechnique.com/])
 
-[http://en.wikipedia.org/wiki/Pomodoro_Technique](Pomodoro Technique on Wikipedia)
+[Pomodoro Technique on Wikipedia](http://en.wikipedia.org/wiki/Pomodoro_Technique)
 
 ## Demo
 
