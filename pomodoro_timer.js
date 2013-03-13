@@ -83,9 +83,28 @@ function PomodoroTimer() {
 
     return null;
   }
+
+  this.finishTask = function(task){
+    var NOT_FOUND = -1;
+
+    var index = this.tasks.indexOf(task);
+
+    if(index != NOT_FOUND){
+      task.finished = true;
+
+      if(typeof this.onFinishTask == "function"){
+        this.onFinishTask(task);
+      }
+
+      return task;
+    }
+
+    return null;
+  }
 }
 
 function PomodoroTask(description){
   this.description = description;
   this.dom_element = null;
+  this.finished = false;
 }

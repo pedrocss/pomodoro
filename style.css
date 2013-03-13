@@ -65,13 +65,27 @@ section {
     display: block;
 }
 
+#task_list li:hover {
+    font-size: 1.6em;
+    background-color: #f2f2f2;
+}
+
 #task_list li:last-child {
     border-bottom: 1px dotted #ccc;
 }
 
-#task_list li a{
-    float: right;
+#task_list li a {
     cursor: pointer;
+    float: right;
+    margin-left: 3%;
+}
+
+li a.remove {
+    color: red;
+}
+
+li a.finish {
+    color: green;
 }
 
 #task_list li p{

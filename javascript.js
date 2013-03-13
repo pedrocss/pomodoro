@@ -57,6 +57,10 @@ pomodoroTimer.onRemoveTask = function(task){
     task.dom_element.parentNode.removeChild(task.dom_element);
 }
 
+pomodoroTimer.onFinishTask = function(task){
+    task.dom_element.parentNode.removeChild(task.dom_element);
+}
+
 // Creates task item (DOM Element) and sets 'onclick' event in anchor to remove task.
 var createTaskListItem = function(task){
     var new_task_li = document.createElement("li");
@@ -65,14 +69,24 @@ var createTaskListItem = function(task){
     var task_description_paragraph = document.createElement("p");
     task_description_paragraph.innerHTML = task.description;
 
-    var delete_task_anchor = document.createElement("a");
-    delete_task_anchor.innerHTML = "&#215;";
+    var remove_task_anchor = document.createElement("a");
+    remove_task_anchor.className = "remove";
+    remove_task_anchor.innerHTML = "&#215;";
+
+    var finish_task_anchor = document.createElement("a");
+    finish_task_anchor.className = "finish";
+    finish_task_anchor.innerHTML = "&#10003;";
 
     new_task_li.appendChild(task_description_paragraph);
-    new_task_li.appendChild(delete_task_anchor);
+    new_task_li.appendChild(remove_task_anchor);
+    new_task_li.appendChild(finish_task_anchor);
 
-    delete_task_anchor.onclick = function() {
+    remove_task_anchor.onclick = function() {
         pomodoroTimer.removeTask(task);
+    }
+
+    finish_task_anchor.onclick = function() {
+        pomodoroTimer.finishTask(task);
     }
 
     return new_task_li;

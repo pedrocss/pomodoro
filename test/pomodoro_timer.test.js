@@ -63,9 +63,7 @@ describe("PomodoroTimer", function(){
         pomodoroTimer.removeTask(task);
         expect(pomodoroTimer.tasks).to.not.contain(task);
       });
-    })
 
-    context("when the informed task is not in the list", function(){
       it("return removed task", function(){
         var task1 = pomodoroTimer.createTask("Study");
         var task2 = pomodoroTimer.createTask("Run");
@@ -76,7 +74,9 @@ describe("PomodoroTimer", function(){
         expect(pomodoroTimer.tasks).to.not.contain(task1);
         expect(pomodoroTimer.tasks).to.contain(task2);
       });
+    });
 
+    context("when the informed task is not in the list", function(){
       it("return null", function(){
         var task = pomodoroTimer.createTask("Study");
 
@@ -121,6 +121,61 @@ describe("PomodoroTimer", function(){
 
       expect(function(){
         pomodoroTimer.removeTask(task);
+      }).to.not.throwException();
+    });
+  });
+
+  describe("#finishTask", function(){
+    context("when the informed task is in the list", function(){
+      it("return finished task", function(){
+        var task = pomodoroTimer.createTask("Study");
+        var finishedTask = pomodoroTimer.finishTask(task);
+        expect(task).to.be(finishedTask);
+      });
+
+      it("should finish task from Pomodoro Timer task list", function(){
+        var task = pomodoroTimer.createTask("Study");
+        pomodoroTimer.finishTask(task);
+        expect(task.finished).to.be(true);
+      });
+
+      it("return finished task", function(){
+        var task = pomodoroTimer.createTask("Study");
+
+        var finishedTask = pomodoroTimer.finishTask(task);
+
+        expect(task).to.be(finishedTask);
+      });
+    });
+
+    context("when the informed task is not in the list", function(){
+      it("return null", function(){
+        var task = pomodoroTimer.createTask("Study");
+
+        pomodoroTimer.removeTask(task);
+        var finishedTask = pomodoroTimer.finishTask(task);
+
+        expect(finishedTask).to.be(null);
+      });
+    });
+  });
+
+  describe("#onFinishTask", function(){
+    it("is called when a task is finished", function(done){
+      pomodoroTimer.onFinishTask = function(task){
+        expect(task.finished).to.be(true);
+        done();
+      };
+
+      var task = pomodoroTimer.createTask("Ah lelek lek lek lek lek");
+      pomodoroTimer.finishTask(task);
+    });
+
+    it("do not throw exception when the onRemoveTask is not a function", function(){
+      var task = pomodoroTimer.createTask("Ah lelek lek lek lek lek");
+
+      expect(function(){
+        pomodoroTimer.finishTask(task);
       }).to.not.throwException();
     });
   });
