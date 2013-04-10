@@ -1,4 +1,4 @@
-var pomodoroTimer = new PomodoroTimer();
+var pomodoro = new Pomodoro();
 
 // Page Elements
 var htmlTimer = document.getElementById('remaining_time');
@@ -32,14 +32,14 @@ var formatNumber = function(number){
 
 // Set function to refresh pomodoro timer and start timer
 startButton.onclick = function() {
-    pomodoroTimer.onTicTac = changeHTMLTimer;
-    pomodoroTimer.start();
+    pomodoro.timer.onTicTac = changeHTMLTimer;
+    pomodoro.start();
 };
 
 // Creates new task with text input value and clears the input text, when pressing Enter
 taskInput.onkeypress = function(e) {
     if (e.keyCode == 13) {
-        pomodoroTimer.createTask(taskInput.value);
+        pomodoro.createTask(taskInput.value);
         taskInput.value = "";
 
         e.preventDefault();
@@ -47,17 +47,17 @@ taskInput.onkeypress = function(e) {
 }
 
 // Adds task item into task list.
-pomodoroTimer.onCreateTask = function(task){
+pomodoro.onCreateTask = function(task){
     task.dom_element = createTaskListItem(task);
     taskList.insertBefore(task.dom_element, taskList.childNodes[0]);
 }
 
 // Removes task item from task list.
-pomodoroTimer.onRemoveTask = function(task){
+pomodoro.onRemoveTask = function(task){
     task.dom_element.parentNode.removeChild(task.dom_element);
 }
 
-pomodoroTimer.onFinishTask = function(task){
+pomodoro.onFinishTask = function(task){
     task.dom_element.parentNode.removeChild(task.dom_element);
 }
 
@@ -82,11 +82,11 @@ var createTaskListItem = function(task){
     new_task_li.appendChild(finish_task_anchor);
 
     remove_task_anchor.onclick = function() {
-        pomodoroTimer.removeTask(task);
+        pomodoro.removeTask(task);
     }
 
     finish_task_anchor.onclick = function() {
-        pomodoroTimer.finishTask(task);
+        pomodoro.finishTask(task);
     }
 
     return new_task_li;

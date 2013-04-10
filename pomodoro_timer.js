@@ -1,57 +1,30 @@
 /**
- * Pomodoro Timer.
+ * Pomodoro.
+ *
  * Read more: http://www.pomodorotechnique.com/
  *
  * HOW USE:
  *
- * var pomodoroTimer = new PomodoroTimer();
+ * var pomodoro = new Pomodoro();
  *
- * pomodoroTimer.onTicTac = function(remainingTime){
+ * pomodoro.timer.onTicTac = function(remainingTime){
  *   //Do something with remaining time;
  * };
  *
- * pomodoroTimer.start();
+ * pomodoro.start();
  */
 
-function PomodoroTimer() {
-  this.endTime = 0;
-  var timerId = 0;
+function Pomodoro() {
+  var TIMER_DURATION = 25;
+
+  this.timer = new Timer();
   this.tasks = [];
-
-  this.remainingTime = function(){
-    var date = new Date();
-    var remainingTime = this.endTime - date.getTime();
-
-    if(remainingTime <= 0){
-      remainingTime = new Date(0);
-    }else{
-      remainingTime = new Date(remainingTime);
-    }
-
-    return remainingTime;
-  };
-
-  var ticTac = function(timer) {
-    var remainingTime = timer.remainingTime();
-
-    if(remainingTime.valueOf() == 0) {
-        clearInterval(timerId);
-        timerId = 0;
-    }
-
-    // call event onTitTac if defined
-    if (typeof timer.onTicTac == "function") {
-      timer.onTicTac(remainingTime);
-    }
-  };
+  this.startedAt = null;
 
   this.start = function() {
-    var date = new Date();
-    this.endTime = date.getTime() + (25 * 60 * 1000); // Current Time + 25 minutes (Pomodoro time)
-    var timer = this;
-
-    if(timerId == 0) {
-        timerId = setInterval(function() { ticTac(timer) }, 1000);
+    if(this.startedAt == null){
+      this.startedAt = new Date().getTime();
+      this.timer.start(TIMER_DURATION);
     }
   };
 
@@ -117,8 +90,49 @@ function PomodoroTask(description){
   this.description = description;
   this.dom_element = null;
   this.finished = false;
+  this.createdAt = new Date().getTime();
 
   this.finish = function(){
     this.finished = true;
   }
+}
+
+function Timer(){
+  var finishAt = null;
+  var timerId = 0;
+
+  this.start = function (duration){
+    if(timerId == 0) {
+      finishAt = new Date().getTime() + (duration * 60 * 1000);
+
+      var timer = this;
+      timerId = setInterval(function() { ticTac(timer) }, 1000);
+    }
+  }
+
+  var ticTac = function(timer) {
+    var remainingTime = timer.remainingTime();
+
+    if(remainingTime.valueOf() == 0) {
+        clearInterval(timerId);
+        timerId = 0;
+    }
+
+    // call event onTitTac if defined
+    if (typeof timer.onTicTac == "function") {
+      timer.onTicTac(remainingTime);
+    }
+  };
+
+  this.remainingTime = function(){
+    var remainingTime = finishAt - new Date().getTime();
+
+    if(remainingTime <= 0){
+      remainingTime = new Date(0);
+    }else{
+      remainingTime = new Date(remainingTime);
+    }
+
+    return remainingTime;
+  };
 }
