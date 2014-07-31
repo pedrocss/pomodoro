@@ -2,7 +2,6 @@ function Pomodoro() {
   var TIMER_DURATION = 25;
 
   this.timer = new Timer();
-  this.tasks = [];
   this.startedAt = null;
 
   this.start = function() {
