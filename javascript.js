@@ -1,10 +1,11 @@
 var pomodoro = new Pomodoro();
+var taskList = new TaskList();
 
 // Page Elements
 var htmlTimer = document.getElementById('remaining_time');
 var startButton = document.getElementById('start_button');
 var taskInput = document.getElementById('task_description');
-var taskList = document.getElementById('task_list');
+var taskListHTML = document.getElementById('task_list');
 
 // Refresh pomodoro timer in view
 var changeHTMLTimer = function(remainingTime) {
@@ -39,7 +40,12 @@ startButton.onclick = function() {
 // Creates new task with text input value and clears the input text, when pressing Enter
 taskInput.onkeypress = function(e) {
     if (e.keyCode == 13) {
-        pomodoro.createTask(taskInput.value);
+        var task = taskList.createTask(taskInput.value);
+
+        task.onFinish = function(task){
+          task.dom_element.parentNode.removeChild(task.dom_element);
+        };
+
         taskInput.value = "";
 
         e.preventDefault();
@@ -47,17 +53,13 @@ taskInput.onkeypress = function(e) {
 }
 
 // Adds task item into task list.
-pomodoro.onCreateTask = function(task){
+taskList.onCreateTask = function(task){
     task.dom_element = createTaskListItem(task);
-    taskList.insertBefore(task.dom_element, taskList.childNodes[0]);
+    taskListHTML.insertBefore(task.dom_element, taskListHTML.childNodes[0]);
 }
 
 // Removes task item from task list.
-pomodoro.onRemoveTask = function(task){
-    task.dom_element.parentNode.removeChild(task.dom_element);
-}
-
-pomodoro.onFinishTask = function(task){
+taskList.onRemoveTask = function(task){
     task.dom_element.parentNode.removeChild(task.dom_element);
 }
 
@@ -82,11 +84,11 @@ var createTaskListItem = function(task){
     new_task_li.appendChild(finish_task_anchor);
 
     remove_task_anchor.onclick = function() {
-        pomodoro.removeTask(task);
+        taskList.removeTask(task);
     }
 
     finish_task_anchor.onclick = function() {
-        pomodoro.finishTask(task);
+        task.finish();
     }
 
     return new_task_li;
