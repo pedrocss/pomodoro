@@ -14,7 +14,7 @@
 
 ## Testing
 
-Open file`test/tests.html` in browser.
+Open file`test/index.html` in browser.
 
 ## Contribuiting
 

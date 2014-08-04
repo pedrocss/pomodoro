@@ -40,4 +40,3 @@ function TaskList(){
     return finishedTasks;
   }
 }
-
