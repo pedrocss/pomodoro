@@ -34,7 +34,7 @@ function TaskList(){
     var finishedTasks = [];
 
     this.tasks.forEach(function(t){
-      if(t.finished){ finishedTasks.push(t); }
+      if(t.finishedAt != null){ finishedTasks.push(t); }
     });
 
     return finishedTasks;

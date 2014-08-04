@@ -8,16 +8,15 @@ describe("Task", function(){
   });
 
   describe("#finish", function(){
-    it("should set finished as true", function(){
+    it("should set finished as date", function(){
       task.finish();
-      expect(task.finished).to.be(true);
+      expect(task.finished).to.not.be(null);
     });
   });
 
   describe("#onFinish", function(){
     it("is called when a task is finished", function(done){
       task.onFinish = function(task){
-        expect(task.finished).to.be(true);
         done();
       };
 

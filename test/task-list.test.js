@@ -105,9 +105,11 @@ describe("TaskList", function(){
   });
 
   describe("#finishedTasks", function(){
-    it("should return array with tasks where finished is true", function(){
+    it("should return array with tasks where finished is not null", function(){
       var task1 = taskList.createTask("Ah lelek lek lek lek lek");
-      var task2 = taskList.createT      taskList.finishTask(task1);
+      var task2 = taskList.createTask("lol");
+
+      task1.finish();
 
       var finishedTasks = taskList.finishedTasks();
 
@@ -116,7 +118,7 @@ describe("TaskList", function(){
     });
 
     it("should be empty when no tasks", function(){
-      expect(pomodoro.finishedTasks).to.empty;
+      expect(taskList.finishedTasks).to.empty;
     });
   });
 });
