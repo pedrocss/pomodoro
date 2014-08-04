@@ -2,38 +2,12 @@ var pomodoro = new Pomodoro();
 var taskList = new TaskList();
 
 // Page Elements
-var htmlTimer = document.getElementById('remaining_time');
 var startButton = document.getElementById('start_button');
 var taskInput = document.getElementById('task_description');
 var taskListHTML = document.getElementById('task_list');
 
-// Refresh pomodoro timer in view
-var changeHTMLTimer = function(remainingTime) {
-    var minutes = remainingTime.getMinutes();
-    var seconds = remainingTime.getSeconds();
-
-    minutes = formatNumber(minutes);
-    seconds = formatNumber(seconds);
-
-    htmlTimer.innerHTML = minutes + ":" + seconds;
-}
-
-// Hour number format. Ex.: 9 to 09; 0 to 00;
-var formatNumber = function(number){
-    if(number < 10 && number > 0) {
-        number = "0" + number;
-    }
-
-    if(number === 0) {
-        number = "00";
-    }
-
-    return number;
-}
-
 // Set function to refresh pomodoro timer and start timer
 startButton.onclick = function() {
-    pomodoro.timer.onTicTac = changeHTMLTimer;
     pomodoro.start();
 };
 
